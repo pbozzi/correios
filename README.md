@@ -12,22 +12,38 @@ $ composer require pbozzi/correios
 ## Utilização
 
 ```php
-$cep = "01310200";
-$endereco = Correios->consultaCEP($cep);
-```
-
-Ou
-
-```php
-$cep = "01310-200";
-$endereco = Correios->consultaCEP($cep);
+use pbozzi\correios\Correios;
+ 
+...
+ 
+$cep = "01310200"; // ou "01310-200";
+$ret = Correios::consultaCEP($cep);
+ 
+if (isset($ret) && $ret['error'] == false)
+{
+    $data['nme_logradouro'] = $ret['endereco']['logradouro'];
+    $data['nme_complemento'] = $ret['endereco']['complemento'];
+    $data['nme_complemento2'] = $ret['endereco']['complemento2'];
+    $data['nme_bairro'] = $ret['endereco']['bairro'];
+    $data['nme_cidade'] = $ret['endereco']['cidade'];
+    $data['cod_uf'] = $ret['endereco']['uf'];
+ 
+    return $data;
+}
+else
+{
+    return [
+        'error' => true,
+        'message' => "CEP não encontrado."
+    ];
+}
 ```
 
 ## Retorno
 
 ```
 Array ( 
-    [error] => 
+    [error] => false
     [endereco] => Array ( 
         [cep] => 01310200 
         [logradouro] => Avenida Paulista 
