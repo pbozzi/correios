@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/pbozzi/correios.svg?branch=master)](https://travis-ci.org/pbozzi/correios)
-
 [![Total Downloads](https://poser.pugx.org/pbozzi/correios/downloads)](https://packagist.org/packages/pbozzi/correios)
 [![Latest Stable Version](https://poser.pugx.org/pbozzi/correios/v/stable)](https://packagist.org/packages/pbozzi/correios)
 [![License](https://poser.pugx.org/pbozzi/correios/license)](https://packagist.org/packages/pbozzi/correios)
