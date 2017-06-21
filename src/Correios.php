@@ -32,7 +32,7 @@ class Correios
     {
         if (!preg_match("/^\d{8}$/", $cep) && !preg_match("/^\d{5}-\d{3}$/", $cep))
         {
-            return array('error' => true, 'message' => "CEP inválido.");
+            return array('error' => true, 'message' => "CEP inválido");
         }
 
         try {
