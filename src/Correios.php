@@ -76,7 +76,7 @@ class Correios
             {
                 $endereco = array(
                     'error' => true,
-                    'messsage' => 'Retorno inesperado do webservice dos Correios',
+                    'message' => 'CEP inválido',
                 );
             }
 
