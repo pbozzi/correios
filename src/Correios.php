@@ -76,7 +76,7 @@ class Correios
             {
                 $endereco = array(
                     'error' => true,
-                    'message' => 'CEP inválido',
+                    'message' => 'CEP não encontrado',
                 );
             }
 

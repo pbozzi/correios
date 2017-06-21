@@ -16,9 +16,9 @@ before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 
-script: vendor/bin/phpunit --color tests
+script: vendor/bin/phpunit --color --coverage-clover ./tests/logs/clover.xml tests
 
 after_success:
-  - travis_retry php vendor/bin/coveralls
+  - travis_retry php vendor/bin/coveralls -v
 
 

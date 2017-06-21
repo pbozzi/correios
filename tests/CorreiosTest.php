@@ -51,7 +51,7 @@ class CorreiosTest extends TestCase
 
     public function testConsultaCepInvalido()
     {
-        $cep = '99999-999';
+        $cep = 'aaa';
         $ret = Correios::consultaCEP($cep);
 
         $this->assertTrue($ret['error']);
@@ -60,5 +60,18 @@ class CorreiosTest extends TestCase
         $this->assertArrayNotHasKey('endereco', $ret);
 
         $this->assertEquals('CEP inválido', $ret['message']);
+    }
+
+    public function testConsultaCepNaoEncontrado()
+    {
+        $cep = '99999-999';
+        $ret = Correios::consultaCEP($cep);
+
+        $this->assertTrue($ret['error']);
+        $this->assertArrayHasKey('message', $ret);
+
+        $this->assertArrayNotHasKey('endereco', $ret);
+
+        $this->assertEquals('CEP não encontrado', $ret['message']);
     }
 }
