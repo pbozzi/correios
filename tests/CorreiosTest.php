@@ -74,4 +74,28 @@ class CorreiosTest extends TestCase
 
         $this->assertEquals('CEP não encontrado', $ret['message']);
     }
+
+    public function testConsultaCepExcecaoSoapFault()
+    {
+
+        $soapFault = new SoapFault("Receiver", "Unknown error");
+
+        $soapClient = $this->getMockBuilder('SoapClient')
+            ->setMethods(array('methodThatCouldThrowSoapFault'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $soapClient->expects($this->once())
+            ->method('methodThatCouldThrowSoapFault')
+            ->will($this->throwException($soapFault));
+
+        try
+        {
+            $soapClient->methodThatCouldThrowSoapFault();
+        }
+        catch (Exception $e)
+        {
+            $this->assertSame($e->getMessage(), "Unknown error");
+        }
+    }
 }

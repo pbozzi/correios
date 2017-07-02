@@ -1,4 +1,4 @@
 /vendor
-/tests/logs
+/build
 .idea
 .env
