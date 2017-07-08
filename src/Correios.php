@@ -11,8 +11,11 @@ use SoapFault;
  */
 class Correios
 {
+    const ERROR = 'error';
+    const MESSAGE = 'message';
+
     /**
-     * Consulta o CEP informado via webservice dos Correios.
+     * Consultar o CEP informado via webservice dos Correios.
      *
      * @param string $cep    O número do CEP no formato 99999999 ou 99999-999.
      *
@@ -28,11 +31,11 @@ class Correios
      *                                             ]
      *                                ]
      */
-    final public static function consultaCEP($cep)
+    final public static function consultarCEP($cep)
     {
         if (!preg_match("/^\d{8}$/", $cep) && !preg_match("/^\d{5}-\d{3}$/", $cep))
         {
-            return array('error' => true, 'message' => "CEP inválido");
+            return array(Correios::ERROR => true, Correios::MESSAGE => "CEP inválido");
         }
 
         try {
@@ -60,7 +63,7 @@ class Correios
             if (isset($result->return))
             {
                 $endereco = array(
-                    'error' => false,
+                    Correios::ERROR => false,
                     'endereco' => array(
                         'cep' => $result->return->cep,
                         'logradouro' => $result->return->end,
@@ -75,8 +78,8 @@ class Correios
             else
             {
                 $endereco = array(
-                    'error' => true,
-                    'message' => 'CEP não encontrado',
+                    Correios::ERROR => true,
+                    Correios::MESSAGE => 'CEP não encontrado',
                 );
             }
 
@@ -85,8 +88,8 @@ class Correios
         catch (SoapFault $e)
         {
             return array(
-                'error' => true,
-                'message' => $e->getMessage(),
+                Correios::ERROR => true,
+                Correios::MESSAGE => $e->getMessage(),
             );
         }
     }
