@@ -6,7 +6,9 @@
 
 # Correios
 
-Biblioteca para consulta do CEP nos Correios.
+Biblioteca para consulta do endereço do CEP informado. 2 métodos possíveis:
+1. consultarCEP: consulta na base de dados dos Correios 
+1. consultarCEPViaCEP: consulta na base de dados do site ViaCEP (melhor desempenho)
 
 ## Instalação
 
@@ -23,7 +25,7 @@ use pbozzi\correios\Correios;
 ...
  
 $cep = "01310200"; // ou "01310-200";
-$ret = Correios::consultaCEP($cep);
+$ret = Correios::consultaCEP($cep); // ou Correios::consultaCEPViaCEP($cep) 
  
 if (isset($ret) && $ret['error'] == false)
 {
